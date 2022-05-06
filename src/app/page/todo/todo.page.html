@@ -1,0 +1,47 @@
+<div class="container-fluid text-center mt-5">
+  <h1 class="text-center">Todo</h1>
+  <div class="conteiner mb-5">
+    <label for="task" class="form-label">Task</label>
+    <input
+      type="text"
+      id="task"
+      class="form-control mb-5"
+      [(ngModel)]="valore"
+    />
+    <button (click)="aggiungi()" class="btn btn-primary">Aggiungi Task</button>
+  </div>
+
+  <table *ngIf="control !=0 && caricamentoCompletato" class="table">
+    <thead>
+      <tr>
+        <th scope="col">#Id</th>
+        <th scope="col">Task</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks;let i = index;">
+        <ng-container *ngIf="!task.completed">
+          <th scope="row">{{i + 1}}</th>
+          <td ><span *ngIf="!task.modifica">{{task.title}}</span> <div *ngIf="task.modifica">
+            <input
+              class="form-control-sm"
+              type="text"
+              [(ngModel)]="task.title"
+            />
+            <button class="btn btn-primary"(click)="modifica(task)">Fatto</button>
+          </div></td>
+          <td>
+            <button class="btn btn-primary" (click)="completa(task)">
+              Completata</button
+            ><button class="btn btn-warning" (click)="task.modifica = true">Modifica</button>
+            <button class="btn btn-danger" (click)="elimina(task.id)">Elimina</button>
+          </td>
+
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+  <h3 *ngIf="!caricamentoCompletato">{{messaggio}}</h3>
+  <h3 *ngIf="control ==0 && caricamentoCompletato">Non ci sono Elementi</h3>
+</div>

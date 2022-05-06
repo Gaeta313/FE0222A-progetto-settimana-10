@@ -1,0 +1,29 @@
+
+<div class="container-fluid text-center mt-5">
+
+  <h1 class="text-center">completed</h1>
+
+  <table *ngIf="control !=0 && caricamentoCompletato" class="table">
+    <thead>
+      <tr>
+        <th scope="col">#Id</th>
+        <th scope="col">Task</th>
+        <th scope="col">Data Completamento</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks;let i = index;">
+        <ng-container *ngIf="task.completed">
+          <th scope="row">{{i + 1}}</th>
+          <td ><span *ngIf="!task.modifica">{{task.title}}</span></td>
+          <td>
+            {{task.data}}
+          </td>
+
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+  <h3 *ngIf="!caricamentoCompletato">{{messaggio}}</h3>
+  <h3 *ngIf=" control ==0 && caricamentoCompletato">Non ci sono Elementi</h3>
+</div>
