@@ -27,6 +27,7 @@ export class TodoPage implements OnInit {
      aggiungi(this.valore).then(tasks => {
       this.tasks = <Todo[]>tasks;
       this.control = this.tasks.filter(ele=>ele.completed == false).length;
+      this.valore = "";
       this.caricamentoCompletato = true;
     });
   }
